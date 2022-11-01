@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@drawable/background">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:id="@+id/logintext"
+        android:textAlignment="center"
+        android:text="Sanal Galeri"
+        android:textColor="@color/white"
+        android:textSize="50dp"
+        />
+
+    <EditText
+        android:id="@+id/username"
+        android:textColorHint="@color/white"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logintext"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="5dp"
+        android:hint="Kullanıcı Adı"
+        android:minHeight="48dp"
+        android:textColor="@color/white"/>
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/username"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="5dp"
+        android:password="true"
+        android:hint="Şifre"
+        android:minHeight="48dp" />
+
+    <Button
+        android:id="@+id/login"
+        android:layout_alignStart="@id/password"
+        android:layout_marginLeft="100dp"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/black"
+        android:text="Giriş Yap"
+        android:layout_below="@id/password"
+        android:layout_marginTop="20dp"
+        />
+
+</RelativeLayout>
