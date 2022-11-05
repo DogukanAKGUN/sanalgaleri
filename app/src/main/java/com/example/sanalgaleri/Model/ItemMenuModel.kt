@@ -1,4 +1,4 @@
-package com.example.sanalgaleri
+package com.example.sanalgaleri.Model
 
 data class ItemMenuModel(
     val _id:String,

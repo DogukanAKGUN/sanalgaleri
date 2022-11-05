@@ -1,8 +1,7 @@
 package com.example.sanalgaleri
 
-
 import android.app.ProgressDialog
-import android.content.ClipData.Item
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,13 +14,14 @@ import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.example.sanalgaleri.Model.ItemMenuModel
+import com.example.sanalgaleri.RecyclerAdapter.onItemCLickListener
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_menu.*
 import org.json.JSONObject
 
 
 class MenuActivity : AppCompatActivity() {
-
 
     private var layoutManager: LayoutManager? = null
     private var adapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>? = null
@@ -67,10 +67,34 @@ class MenuActivity : AppCompatActivity() {
                             liste.add(sItem)
 
                         }
-                        adapter = RecyclerAdapter(liste)
+                        var Menuadapter = RecyclerAdapter(liste)
 
-                        recyclerView.adapter = adapter
+                        recyclerView.adapter = Menuadapter
+
                         dialog?.dismiss()
+                        Menuadapter.setOnItemCLickListener(object : onItemCLickListener{
+                            override fun onItemClick(position: Int) {
+
+                                if (position == 0){
+                                    val intent = Intent(this@MenuActivity, BrandActivity::class.java)
+                                    startActivity(intent)
+                                }
+                                else if(position==1){
+                                    val intent = Intent(this@MenuActivity, SuvBrandActivity::class.java)
+                                    startActivity(intent)
+                                }
+                                else if(position==2){
+                                    val intent = Intent(this@MenuActivity, motorcycleBrandActivity::class.java)
+                                    startActivity(intent)
+                                }
+
+
+                                Toast.makeText(this@MenuActivity, "Giriş Yaptı:"+ position, Toast.LENGTH_SHORT).show()
+
+
+                            }
+
+                        })
                     } catch (e: Exception) { // caught while parsing the response
                         Log.e(TAG, "problem occurred"+ e )
                         e.printStackTrace()
@@ -96,17 +120,17 @@ class MenuActivity : AppCompatActivity() {
             volleyRequestQueue?.add(strReq)
         }
 
-
-
-
-
-
-
-
         VerileriGetir()
+
+        //var adapter = RecyclerAdapter(liste)
+        //recyclerView.adapter = adapter
+
+
+
 
         //getData()
     }
+
 /*
 fun getData(){
         val url = "http://10.0.2.2:5000/vehicles"

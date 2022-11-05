@@ -5,18 +5,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sanalgaleri.Model.ItemMenuModel
+import com.example.sanalgaleri.Model.suvBrandModel
 
-class RecyclerAdapter(
-    val liste: ArrayList<ItemMenuModel>
-    ) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+class SuvBrandRecyclerAdapter  (
+    val suvBrandListe: ArrayList<suvBrandModel>
+): RecyclerView.Adapter<SuvBrandRecyclerAdapter.ViewHolder>() {
 
     //private var titles = arrayOf("Otomobil","Elektrikli Otomobil","SUV","Arazi Araçları","Motorsiklet")
     //private var images = intArrayOf(R.drawable.otomobil , R.drawable.elektrikli_araba,R.drawable.suv, R.drawable.arazi_araci,R.drawable.motorsiklet)
     //private var detail = arrayOf("Gündelik kullanım için binek araçlar","Gündelik kullanım için elektrikli araçlar","Gündelik kullanım için SUV araçlar","Yollar dışarısında kullanmak için sınır tanımayan arazi araçları","Gündelik kullanım için motorsikler")
 
-
-    //item click listener
     private lateinit var mListener: onItemCLickListener
 
     interface onItemCLickListener{
@@ -29,8 +27,8 @@ class RecyclerAdapter(
 
     inner class ViewHolder(itemView: View , listener: onItemCLickListener): RecyclerView.ViewHolder(itemView){
 
-        val title: TextView = itemView.findViewById(R.id.item_title)
-        val detail: TextView = itemView.findViewById(R.id.item_detail)
+        //val image: ImageView = itemView.findViewById(R.id.brand_image)
+        val title: TextView = itemView.findViewById(R.id.brand_title)
 
 
         init{
@@ -52,26 +50,30 @@ class RecyclerAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemview = LayoutInflater.from(parent.context)
-            .inflate(R.layout.menu_card,parent,false)
-        return ViewHolder(itemview,mListener)
+        val v = LayoutInflater.from(parent.context)
+            .inflate(R.layout.brand_card,parent,false)
+        return ViewHolder(v,mListener)
     }
 
     override fun getItemCount(): Int {
-        return liste.size
+        return suvBrandListe.size
     }
 
-    override fun onBindViewHolder(holder: RecyclerAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: SuvBrandRecyclerAdapter.ViewHolder, position: Int) {
 
-        val ItemMenuModel = liste[position]
+        val suvBrandModel = suvBrandListe[position]
+        holder.title.text = suvBrandModel.brandName
+        //holder.image.setImageResource(otomobilBrandModel.brandImage.toString())
+
+
+        //val ItemMenuModel = liste[position]
         //holder.image.setImageResource(ItemMenuModel.image)
-        holder.title.text = ItemMenuModel.title
-        holder.detail.text = ItemMenuModel.detail
-        //holder.title.text = liste[position].title
-       // holder.detail.text = liste[position].detail
+        //holder.title.text = ItemMenuModel.title
+        //holder.detail.text = ItemMenuModel.detail
 
-        //holder.itemTitle.text = titles[position]
-        //holder.itemDetail.text = detail[position]
-        //holder.itemImage.setImageResource(images[position])
     }
+
+    //override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    //   TODO("Not yet implemented")
+    //}
 }
