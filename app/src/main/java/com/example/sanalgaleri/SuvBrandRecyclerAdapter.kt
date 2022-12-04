@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sanalgaleri.Model.suvBrandModel
 
 class SuvBrandRecyclerAdapter  (
-    val suvBrandListe: ArrayList<suvBrandModel>
+   private val suvBrandListe: ArrayList<suvBrandModel>
 ): RecyclerView.Adapter<SuvBrandRecyclerAdapter.ViewHolder>() {
 
     //private var titles = arrayOf("Otomobil","Elektrikli Otomobil","SUV","Arazi Araçları","Motorsiklet")

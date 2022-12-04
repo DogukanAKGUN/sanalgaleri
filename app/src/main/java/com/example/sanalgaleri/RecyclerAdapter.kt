@@ -3,18 +3,15 @@ package com.example.sanalgaleri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.sanalgaleri.Model.ItemMenuModel
 
 class RecyclerAdapter(
-    val liste: ArrayList<ItemMenuModel>
+    private val liste: ArrayList<ItemMenuModel>
     ) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
-
-    //private var titles = arrayOf("Otomobil","Elektrikli Otomobil","SUV","Arazi Araçları","Motorsiklet")
-    //private var images = intArrayOf(R.drawable.otomobil , R.drawable.elektrikli_araba,R.drawable.suv, R.drawable.arazi_araci,R.drawable.motorsiklet)
-    //private var detail = arrayOf("Gündelik kullanım için binek araçlar","Gündelik kullanım için elektrikli araçlar","Gündelik kullanım için SUV araçlar","Yollar dışarısında kullanmak için sınır tanımayan arazi araçları","Gündelik kullanım için motorsikler")
-
 
     //item click listener
     private lateinit var mListener: onItemCLickListener
@@ -29,6 +26,7 @@ class RecyclerAdapter(
 
     inner class ViewHolder(itemView: View , listener: onItemCLickListener): RecyclerView.ViewHolder(itemView){
 
+        val image: ImageView = itemView.findViewById(R.id.item_image)
         val title: TextView = itemView.findViewById(R.id.item_title)
         val detail: TextView = itemView.findViewById(R.id.item_detail)
 
@@ -38,17 +36,6 @@ class RecyclerAdapter(
                 listener.onItemClick(adapterPosition)
             }
         }
-        /*
-        val image : ImageView
-        val title : TextView
-        val detail : TextView
-
-        init {
-            image = itemView.findViewById(R.id.item_image)
-            title = itemView.findViewById(R.id.item_title)
-            detail = itemView.findViewById(R.id.item_detail)
-        }
-        */
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -63,15 +50,14 @@ class RecyclerAdapter(
 
     override fun onBindViewHolder(holder: RecyclerAdapter.ViewHolder, position: Int) {
 
-        val ItemMenuModel = liste[position]
-        //holder.image.setImageResource(ItemMenuModel.image)
-        holder.title.text = ItemMenuModel.title
-        holder.detail.text = ItemMenuModel.detail
-        //holder.title.text = liste[position].title
-       // holder.detail.text = liste[position].detail
+        val ItemMenu = liste[position]
+        holder.title.text = ItemMenu.title
+        holder.detail.text = ItemMenu.detail
 
-        //holder.itemTitle.text = titles[position]
-        //holder.itemDetail.text = detail[position]
-        //holder.itemImage.setImageResource(images[position])
+
+        Glide.with(holder.itemView)
+            .load(ItemMenu.image)
+            .into(holder.image)
+
     }
 }

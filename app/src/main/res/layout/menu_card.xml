@@ -5,7 +5,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/menu_cardView"
     android:layout_margin="5dp"
-    app:cardBackgroundColor="#c8a2c8"
     app:cardCornerRadius="12dp"
     app:cardElevation="3dp"
     app:contentPadding="4dp"
@@ -15,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/relativeLayout"
+        android:outlineProvider="@color/black"
         android:padding="16dp"
         >
 

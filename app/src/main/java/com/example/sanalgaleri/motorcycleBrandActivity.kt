@@ -1,6 +1,7 @@
 package com.example.sanalgaleri
 
 import android.app.ProgressDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -66,10 +67,9 @@ class motorcycleBrandActivity : AppCompatActivity() {
                             MotorcycleBrandRecyclerAdapter.onItemCLickListener {
                             override fun onItemClick(position: Int) {
 
-                                //val intent = Intent(this@BrandActivity, BrandActivity::class.java)
+                                val intent = Intent(this@motorcycleBrandActivity, CarouselActivity::class.java)
+                                startActivity(intent)
 
-                                //Toast.makeText(this@BrandActivity, "Giriş Yaptı:"+ position, Toast.LENGTH_SHORT).show()
-                                //startActivity(intent)
 
                             }
 

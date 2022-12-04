@@ -89,7 +89,7 @@ class MenuActivity : AppCompatActivity() {
                                 }
 
 
-                                Toast.makeText(this@MenuActivity, "Giriş Yaptı:"+ position, Toast.LENGTH_SHORT).show()
+                                //Toast.makeText(this@MenuActivity, "Giriş Yaptı:"+ position, Toast.LENGTH_SHORT).show()
 
 
                             }

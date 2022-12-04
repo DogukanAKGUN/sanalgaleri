@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/brand_cardView"
     android:layout_margin="5dp"
-    app:cardBackgroundColor="#c8a2c8"
+
     app:cardCornerRadius="12dp"
     app:cardElevation="3dp"
     app:contentPadding="4dp"
