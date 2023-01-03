@@ -16,6 +16,7 @@ import com.example.sanalgaleri.Model.otomobilBrandModel
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.smarteist.autoimageslider.SliderView
+import kotlinx.android.synthetic.main.activity_carousel.*
 import kotlinx.android.synthetic.main.item_carousel.*
 import org.json.JSONObject
 
@@ -60,14 +61,26 @@ class CarouselActivity : AppCompatActivity() {
                             val sItems = responseObj.getJSONArray("res")
                             //val sItem = gson.fromJson(sItems.toString(), CarDetails::class.java)
 
-                            Log.e("nesin sen ", sItems.toString())
+
 
                             for (i in 0..sItems.length()-1) {
                                 val sItem: CarDetails =
                                     gson.fromJson(sItems.get(i).toString(), CarDetails::class.java)
+                                Log.e(TAG, "fromjson: " + sItem )
                                 carDetail.add(sItem)
                             }
+                            Log.e("negeliyor","döngü bitti" + carDetail.toString())
 
+                            Title.text = carDetail[0].title
+                            Detail.text = carDetail[0].detail
+                            ModelYear.text = carDetail[0].modelYear
+                            Price.text = carDetail[0].price
+                            Brand.text = carDetail[0].brand
+                            Modal.text = carDetail[0].model
+                            KM.text = carDetail[0].km
+                            EnginePower.text = carDetail[0].enginePower
+                            EngineCapacity.text = carDetail[0].engineCapacity
+                            Color.text = carDetail[0].color
 
                             sliderAdapter = SliderAdapter(carDetail)
                             sliderView.autoCycleDirection = SliderView.LAYOUT_DIRECTION_LTR

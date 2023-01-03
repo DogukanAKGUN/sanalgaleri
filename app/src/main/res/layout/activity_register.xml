@@ -10,9 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
-        android:id="@+id/logintext"
+        android:id="@+id/signintext"
         android:textAlignment="center"
-        android:text="Sanal Galeri"
+        android:text="Kayıt Ol"
         android:textColor="@color/white"
         android:textSize="50dp"
         />
@@ -22,7 +22,7 @@
         android:textColorHint="@color/white"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/logintext"
+        android:layout_below="@id/signintext"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="5dp"
         android:hint="Kullanıcı Adı"
@@ -43,23 +43,10 @@
         android:minHeight="48dp" />
 
     <Button
-        android:id="@+id/login"
+        android:id="@+id/saveuser"
         android:layout_alignStart="@id/password"
-        android:layout_marginLeft="0dp"
+        android:layout_marginLeft="100dp"
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
-        android:textColor="@color/black"
-        android:text="Giriş Yap"
-        android:layout_below="@id/password"
-        android:layout_marginTop="20dp"
-        />
-
-    <Button
-        android:id="@+id/signin"
-        android:layout_alignStart="@id/password"
-        android:layout_marginLeft="200dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"

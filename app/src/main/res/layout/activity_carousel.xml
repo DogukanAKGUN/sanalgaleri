@@ -21,21 +21,257 @@
        the slider is unselected
         slider scroll time in sec is used to specify scrolling time in seconds
     -->
+
     <com.smarteist.autoimageslider.SliderView
         android:id="@+id/slider"
         android:layout_width="match_parent"
-        android:layout_height="247dp"
+        android:layout_height="273dp"
         app:sliderAnimationDuration="600"
         app:sliderAutoCycleDirection="back_and_forth"
         app:sliderIndicatorAnimationDuration="600"
         app:sliderIndicatorEnabled="true"
         app:sliderIndicatorGravity="center_horizontal|bottom"
-        app:sliderIndicatorMargin="15dp"
         app:sliderIndicatorOrientation="horizontal"
-        app:sliderIndicatorPadding="3dp"
-        app:sliderIndicatorRadius="2dp"
         app:sliderIndicatorSelectedColor="#5A5A5A"
         app:sliderIndicatorUnselectedColor="#FFF"
         app:sliderScrollTimeInSec="1" />
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="45sp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Detay Bilgileri"
+        android:textAlignment="center"
+        android:layout_below="@+id/slider"
+    />
+
+    <TextView
+        android:layout_marginTop="350dp"
+        android:layout_width="150dp"
+        android:textSize="20sp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="İlan Başlığı: "
+        android:textAlignment="center"
+        android:id="@+id/titletxt"
+        />
+    <TextView
+        android:layout_marginTop="350dp"
+        android:layout_width="match_parent"
+        android:textSize="20sp"
+        android:fontFamily="sans-serif-medium"
+        android:layout_toRightOf="@+id/titletxt"
+        android:layout_height="wrap_content"
+        android:id="@+id/Title"
+        />
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_width="150dp"
+        android:textSize="20sp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:layout_below="@id/Title"
+        android:text="Model Yılı: "
+        android:textAlignment="center"
+        android:id="@+id/modelyeartxt"
+        />
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:textSize="20sp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:layout_toRightOf="@+id/modelyeartxt"
+        android:layout_below="@+id/Title"
+        android:id="@+id/ModelYear"
+        />
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_width="150dp"
+        android:textSize="20sp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:layout_below="@id/ModelYear"
+        android:text="Fiyat: "
+        android:textAlignment="center"
+        android:id="@+id/pricetxt"
+        />
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_below="@+id/ModelYear"
+        android:fontFamily="sans-serif-medium"
+        android:layout_toRightOf="@+id/pricetxt"
+        android:id="@+id/Price"
+        />
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_width="150dp"
+        android:textSize="20sp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:layout_below="@id/Price"
+        android:text="Marka: "
+        android:textAlignment="center"
+        android:id="@+id/brandtxt"
+        />
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="20sp"
+        android:layout_below="@+id/Price"
+        android:layout_toRightOf="@+id/brandtxt"
+        android:id="@+id/Brand"
+        />
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_width="150dp"
+        android:textSize="20sp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:layout_below="@id/Brand"
+        android:text="Model: "
+        android:textAlignment="center"
+        android:id="@+id/modeltxt"
+        />
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:textSize="20sp"
+        android:fontFamily="sans-serif-medium"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/modeltxt"
+        android:layout_below="@+id/Brand"
+        android:id="@+id/Modal"
+        />
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_width="150dp"
+        android:textSize="20sp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:layout_below="@id/Modal"
+        android:text="KM: "
+        android:textAlignment="center"
+        android:id="@+id/kmtxt"
+        />
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:textSize="20sp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:layout_toRightOf="@+id/kmtxt"
+        android:layout_below="@+id/Modal"
+        android:id="@+id/KM"
+        />
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_width="150dp"
+        android:textSize="20sp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:layout_below="@id/KM"
+        android:text="Motor Gücü: "
+        android:textAlignment="center"
+        android:id="@+id/powertxt"
+        />
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:textSize="20sp"
+        android:fontFamily="sans-serif-medium"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/powertxt"
+        android:layout_below="@+id/KM"
+        android:id="@+id/EnginePower"
+        />
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_width="150dp"
+        android:textSize="20sp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:layout_below="@id/EnginePower"
+        android:text="Motor Hacmi: "
+        android:textAlignment="center"
+        android:id="@+id/capacitytxt"
+        />
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:textSize="20sp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/EnginePower"
+        android:layout_toRightOf="@+id/capacitytxt"
+        android:fontFamily="sans-serif-medium"
+        android:id="@+id/EngineCapacity"
+        />
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_width="150dp"
+        android:textSize="20sp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:layout_below="@id/EngineCapacity"
+        android:text="Renk: "
+        android:textAlignment="center"
+        android:id="@+id/colortxt"
+        />
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:textSize="20sp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/EngineCapacity"
+        android:layout_toRightOf="@+id/colortxt"
+        android:fontFamily="sans-serif-medium"
+        android:id="@+id/Color"
+        />
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_width="150dp"
+        android:textSize="20sp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:layout_below="@id/Color"
+        android:text="Açıklama: "
+        android:textAlignment="center"
+        android:id="@+id/detaytxt"
+        />
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:textSize="20sp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:layout_below="@+id/Color"
+        android:layout_toRightOf="@+id/detaytxt"
+        android:id="@+id/Detail"
+        />
+
 
 </RelativeLayout>

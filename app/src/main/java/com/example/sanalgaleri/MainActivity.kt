@@ -52,6 +52,10 @@ class MainActivity : AppCompatActivity() {
 
             }
 
+            signin.setOnClickListener{
+                val siginIntent = Intent(this, RegisterActivity::class.java)
+                startActivity(siginIntent)
+            }
 
         }
     }
