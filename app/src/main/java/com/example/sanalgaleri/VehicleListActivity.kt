@@ -12,29 +12,30 @@ import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.sanalgaleri.Model.motorcycleBrandModel
+import com.example.sanalgaleri.Model.VehicleList
+import com.example.sanalgaleri.Model.suvBrandModel
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.activity_motorcycle_brand.*
+
+import kotlinx.android.synthetic.main.activity_suv_brand.*
+import kotlinx.android.synthetic.main.activity_vehicle_list.*
 import org.json.JSONObject
 
-class motorcycleBrandActivity : AppCompatActivity() {
-
+class VehicleListActivity : AppCompatActivity() {
     private var layoutManager: RecyclerView.LayoutManager? = null
-    //private var adapter: RecyclerView.Adapter<BrandRecyclerAdapter.ViewHolder>? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_motorcycle_brand)
+        setContentView(R.layout.activity_vehicle_list)
 
-        val motorcycleBrandListe = ArrayList<motorcycleBrandModel>()
+        val VehicleListe = ArrayList<VehicleList>()
+
+
 
         layoutManager = LinearLayoutManager(this)
-
-        motorcycleBrandRecyclerView.layoutManager = layoutManager
+        VehicleListRecyclerView.layoutManager = layoutManager
 
         var volleyRequestQueue: RequestQueue? = null
         var dialog: ProgressDialog? = null
-        val serverAPIURL: String = "http://10.0.2.2:5000/motorcyclebrands"
+        val serverAPIURL: String = "http://10.0.2.2:5000/vehiclelist"
         val TAG = "My Api"
 
         fun VerileriGetir() {
@@ -53,23 +54,24 @@ class motorcycleBrandActivity : AppCompatActivity() {
                         val sItems = responseObj.getJSONArray("res")
 
                         for (i in 0..sItems.length()-1) {
-                            var sItem: motorcycleBrandModel =
-                                gson.fromJson(sItems.get(i).toString(), motorcycleBrandModel::class.java)
-                            motorcycleBrandListe.add(sItem)
+                            var sItem: VehicleList =
+                                gson.fromJson(sItems.get(i).toString(), VehicleList::class.java)
+                            VehicleListe.add(sItem)
 
                         }
-                        var adapter = MotorcycleBrandRecyclerAdapter(motorcycleBrandListe)
+                        var adapter = VehicleListRecyclerAdapter(VehicleListe)
 
-                        motorcycleBrandRecyclerView.adapter = adapter
+                        VehicleListRecyclerView.adapter = adapter
 
                         dialog?.dismiss()
                         adapter.setOnItemCLickListener(object :
-                            MotorcycleBrandRecyclerAdapter.onItemCLickListener {
+                            VehicleListRecyclerAdapter.onItemCLickListener {
                             override fun onItemClick(position: Int) {
 
-                                val intent = Intent(this@motorcycleBrandActivity, VehicleListActivity::class.java)
-                                startActivity(intent)
+                                val intent = Intent(this@VehicleListActivity, CarouselActivity::class.java)
 
+                                //Toast.makeText(this@BrandActivity, "Giriş Yaptı:"+ position, Toast.LENGTH_SHORT).show()
+                                startActivity(intent)
 
                             }
 
@@ -98,7 +100,6 @@ class motorcycleBrandActivity : AppCompatActivity() {
             // Adding request to request queue
             volleyRequestQueue?.add(strReq)
         }
-
         VerileriGetir()
     }
 }

@@ -36,17 +36,7 @@ class SuvBrandRecyclerAdapter  (
                 listener.onItemClick(adapterPosition)
             }
         }
-        /*
-        val image : ImageView
-        val title : TextView
-        val detail : TextView
 
-        init {
-            image = itemView.findViewById(R.id.item_image)
-            title = itemView.findViewById(R.id.item_title)
-            detail = itemView.findViewById(R.id.item_detail)
-        }
-        */
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -72,8 +62,4 @@ class SuvBrandRecyclerAdapter  (
         //holder.detail.text = ItemMenuModel.detail
 
     }
-
-    //override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-    //   TODO("Not yet implemented")
-    //}
 }
