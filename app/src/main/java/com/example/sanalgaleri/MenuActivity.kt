@@ -5,7 +5,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
@@ -16,6 +19,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.sanalgaleri.Model.ItemMenuModel
 import com.example.sanalgaleri.RecyclerAdapter.onItemCLickListener
+import com.google.android.material.navigation.NavigationView
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_menu.*
 import org.json.JSONObject
@@ -27,11 +31,31 @@ class MenuActivity : AppCompatActivity() {
     private var adapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>? = null
     //private var liste: ArrayList<ItemMenuModel> = ArrayList();
 
-
+    lateinit var toggle:ActionBarDrawerToggle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
+
+        //drawer işlemleri burada yapıldı
+        val drawerLayout:DrawerLayout= findViewById(R.id.drawerLayout)
+        val navView:NavigationView = findViewById(R.id.nav_view)
+
+        toggle = ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close)
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        navView.setNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.profile -> Toast.makeText(applicationContext,"Profile Tıklandı",Toast.LENGTH_SHORT).show()
+                R.id.favorites -> Toast.makeText(applicationContext,"Favorilere Tıklandı",Toast.LENGTH_SHORT).show()
+                R.id.addnewad -> Toast.makeText(applicationContext,"Yeni İlan Eklemeye Tıklandı",Toast.LENGTH_SHORT).show()
+            }
+            true
+        }
+
+        //drawer işlemleri bitişi
 
         val liste = ArrayList<ItemMenuModel>()
 
@@ -122,50 +146,12 @@ class MenuActivity : AppCompatActivity() {
 
         VerileriGetir()
 
-        //var adapter = RecyclerAdapter(liste)
-        //recyclerView.adapter = adapter
-
-
-
-
-        //getData()
     }
-
-/*
-fun getData(){
-        val url = "http://10.0.2.2:5000/vehicles"
-        val requestQueue = Volley.newRequestQueue(this)
-        val stringRequest = StringRequest(com.android.volley.Request.Method.GET,url,
-            Response.Listener { response ->
-                Log.d("response",response)
-                    val jsonObject = JSONObject(response)
-
-                    val jsonArray = jsonObject.getJSONArray("data")
-                    for (i in 0..jsonArray.length()-1){
-                        val jo = jsonArray.getJSONObject(i)
-                        val id = jo.get("_id").toString()
-                        val title = jo.get("title").toString()
-                        val image = jo.get("image").toString()
-                        val detail = jo.get("detail").toString()
-                        val item = ItemMenuModel(id,title,image,detail)
-                        liste.add(item)
-
-                        layoutManager = LinearLayoutManager(this)
-
-                        recyclerView.layoutManager = layoutManager
-
-                        adapter = RecyclerAdapter(liste)
-
-                        recyclerView.adapter = adapter
-                    }
-
-
-            },Response.ErrorListener { error ->
-
-            })
-
-        requestQueue.add(stringRequest)
+    //Tıklanan menü itemin ekranda tıklı bir şekilde gözükmesini sağlıyor
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(toggle.onOptionsItemSelected(item)){
+            true
+        }
+        return super.onOptionsItemSelected(item)
     }
-*/
-
 }
