@@ -39,6 +39,7 @@ class MenuActivity : AppCompatActivity() {
 
         //drawer işlemleri burada yapıldı
         val drawerLayout:DrawerLayout= findViewById(R.id.drawerLayout)
+
         val navView:NavigationView = findViewById(R.id.nav_view)
 
         toggle = ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close)
@@ -46,15 +47,15 @@ class MenuActivity : AppCompatActivity() {
         toggle.syncState()
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         navView.setNavigationItemSelectedListener {
             when(it.itemId){
-                R.id.profile -> Toast.makeText(applicationContext,"Profile Tıklandı",Toast.LENGTH_SHORT).show()
-                R.id.favorites -> Toast.makeText(applicationContext,"Favorilere Tıklandı",Toast.LENGTH_SHORT).show()
-                R.id.addnewad -> Toast.makeText(applicationContext,"Yeni İlan Eklemeye Tıklandı",Toast.LENGTH_SHORT).show()
+                R.id.profile -> startActivity(Intent(this@MenuActivity, ProfileActivity::class.java))
+                R.id.favorites -> startActivity(Intent(this@MenuActivity, FavoritesActivity::class.java))
+                R.id.addnewad -> startActivity(Intent(this@MenuActivity, NewAdvertiseActivity::class.java))
             }
             true
         }
-
         //drawer işlemleri bitişi
 
         val liste = ArrayList<ItemMenuModel>()
@@ -67,8 +68,6 @@ class MenuActivity : AppCompatActivity() {
         var dialog: ProgressDialog? = null
         val serverAPIURL: String = "http://10.0.2.2:5000/vehicles"
         val TAG = "My Api"
-
-
 
         fun VerileriGetir() {
             volleyRequestQueue = Volley.newRequestQueue(this)
@@ -111,11 +110,6 @@ class MenuActivity : AppCompatActivity() {
                                     val intent = Intent(this@MenuActivity, motorcycleBrandActivity::class.java)
                                     startActivity(intent)
                                 }
-
-
-                                //Toast.makeText(this@MenuActivity, "Giriş Yaptı:"+ position, Toast.LENGTH_SHORT).show()
-
-
                             }
 
                         })
@@ -150,7 +144,7 @@ class MenuActivity : AppCompatActivity() {
     //Tıklanan menü itemin ekranda tıklı bir şekilde gözükmesini sağlıyor
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(toggle.onOptionsItemSelected(item)){
-            true
+            return true
         }
         return super.onOptionsItemSelected(item)
     }

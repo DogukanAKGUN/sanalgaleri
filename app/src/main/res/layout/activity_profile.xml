@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfileActivity">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profielimg"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="146dp"
+        android:layout_marginEnd="145dp"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/ic_profile" />
+
+    <TextView
+        android:id="@+id/nav_user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profielimg"
+        android:layout_marginTop="20dp"
+        android:paddingTop="8dp"
+        android:text="KULLANICI ADI KOYULACAK"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:textStyle="bold" />
+
+
+
+
+</RelativeLayout>

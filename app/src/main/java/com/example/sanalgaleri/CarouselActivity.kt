@@ -66,10 +66,8 @@ class CarouselActivity : AppCompatActivity() {
                             for (i in 0..sItems.length()-1) {
                                 val sItem: CarDetails =
                                     gson.fromJson(sItems.get(i).toString(), CarDetails::class.java)
-                                Log.e(TAG, "fromjson: " + sItem )
                                 carDetail.add(sItem)
                             }
-                            Log.e("negeliyor","döngü bitti" + carDetail.toString())
 
                             Title.text = carDetail[0].title
                             Detail.text = carDetail[0].detail
