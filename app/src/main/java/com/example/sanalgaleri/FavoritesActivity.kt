@@ -35,7 +35,7 @@ class FavoritesActivity : AppCompatActivity() {
         val serverAPIURL: String = "http://10.0.2.2:5000/favorites"
         val TAG = "My Api"
 
-        fun VerileriGetir() {
+        fun VerileriGetir() {0
             volleyRequestQueue = Volley.newRequestQueue(this)
             dialog = ProgressDialog.show(this, "", "Lütfen bekleyin...", true);
             val parameters: MutableMap<String, String> = HashMap()
