@@ -12,6 +12,11 @@
         android:title="Favoritler"/>
 
     <item
+        android:id="@+id/myads"
+        android:icon="@drawable/ic_ads"
+        android:title="İlanlarım"/>
+
+    <item
         android:id="@+id/addnewad"
         android:icon="@drawable/ic_add_icon"
         android:title="Yeni İlan ver"/>

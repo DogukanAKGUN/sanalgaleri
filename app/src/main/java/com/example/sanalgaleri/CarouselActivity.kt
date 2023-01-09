@@ -39,7 +39,6 @@ class CarouselActivity : AppCompatActivity() {
         val carDetail = ArrayList<CarDetails>()
 
 
-
         var volleyRequestQueue: RequestQueue? = null
         var dialog: ProgressDialog? = null
         val url = "http://10.0.2.2:5000/cardetails"
@@ -61,13 +60,18 @@ class CarouselActivity : AppCompatActivity() {
                             val sItems = responseObj.getJSONArray("res")
                             //val sItem = gson.fromJson(sItems.toString(), CarDetails::class.java)
 
-
-
                             for (i in 0..sItems.length()-1) {
                                 val sItem: CarDetails =
                                     gson.fromJson(sItems.get(i).toString(), CarDetails::class.java)
                                 carDetail.add(sItem)
                             }
+
+                            sliderAdapter = SliderAdapter(carDetail)
+                            sliderView.autoCycleDirection = SliderView.LAYOUT_DIRECTION_LTR
+                            sliderView.setSliderAdapter(sliderAdapter)
+                            sliderView.scrollTimeInSec =10
+                            sliderView.isAutoCycle = true
+                            sliderView.startAutoCycle()
 
                             Title.text = carDetail[0].title
                             Detail.text = carDetail[0].detail
@@ -80,12 +84,6 @@ class CarouselActivity : AppCompatActivity() {
                             EngineCapacity.text = carDetail[0].engineCapacity
                             Color.text = carDetail[0].color
 
-                            sliderAdapter = SliderAdapter(carDetail)
-                            sliderView.autoCycleDirection = SliderView.LAYOUT_DIRECTION_LTR
-                            sliderView.setSliderAdapter(sliderAdapter)
-                            sliderView.scrollTimeInSec =10
-                            sliderView.isAutoCycle = true
-                            sliderView.startAutoCycle()
                             dialog?.dismiss()
                         } catch (e: Exception) { // caught while parsing the response
                             Log.e(TAG, "problem occurred"+ e )
@@ -103,66 +101,3 @@ class CarouselActivity : AppCompatActivity() {
     }
 
 }
-
-
-
-/*
-fun VerileriGetir() {
-            volleyRequestQueue = Volley.newRequestQueue(this)
-            dialog = ProgressDialog.show(this, "", "Lütfen bekleyin...", true);
-            val parameters: MutableMap<String, String> = HashMap()
-
-            val strReq: StringRequest = object : StringRequest(
-                Method.POST,serverAPIURL,
-                Response.Listener { response ->
-                    Log.e(TAG, "response: " + response)
-                    try {
-                        val responseObj = JSONObject(response)
-                        val gson = Gson()
-
-                        val sItems = responseObj.getJSONArray("res")
-
-                        for (i in 0..sItems.length()-1) {
-                            val sItem: CarDetails =
-                                gson.fromJson(sItems.get(i).toString(), CarDetails::class.java)
-                            carDetails.add(sItem)
-                        }
-                        val sliderAdapter = SliderAdapter(carDetails)
-
-                        sliderView.autoCycleDirection = SliderView.LAYOUT_DIRECTION_LTR
-
-                        sliderView.setSliderAdapter(sliderAdapter)
-
-                        sliderView.scrollTimeInSec =10
-
-                        sliderView.isAutoCycle = false
-
-                        sliderView.startAutoCycle()
-                        dialog?.dismiss()
-                    } catch (e: Exception) { // caught while parsing the response
-                        Log.e(TAG, "problem occurred"+ e )
-                        e.printStackTrace()
-                    }
-                },
-                Response.ErrorListener { volleyError -> // error occurred
-                    Log.e(TAG, "problem occurred, volley error: " + volleyError.message)
-                }) {
-
-                override fun getParams(): MutableMap<String, String> {
-                    return parameters;
-                }
-
-                @Throws(AuthFailureError::class)
-                override fun getHeaders(): Map<String, String> {
-
-                    val headers: MutableMap<String, String> = HashMap()
-                    // Add your Header paramters here
-                    return headers
-                }
-            }
-            // Adding request to request queue
-            volleyRequestQueue?.add(strReq)
-        }
-
-        VerileriGetir()
-*/

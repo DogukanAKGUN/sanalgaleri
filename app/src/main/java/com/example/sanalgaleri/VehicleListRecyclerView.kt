@@ -56,9 +56,9 @@ class VehicleListRecyclerAdapter (
         holder.itemView.title.text = VehicleListe.title
         holder.itemView.price.text = VehicleListe.price
 
-        Glide.with(holder.itemView)
+        /*Glide.with(holder.itemView)
             .load(VehicleListe.image)
-            .into(holder.itemView.image)
+            .into(holder.itemView.image)*/
 
     }
 

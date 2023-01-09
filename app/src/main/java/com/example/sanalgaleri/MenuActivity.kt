@@ -52,6 +52,7 @@ class MenuActivity : AppCompatActivity() {
             when(it.itemId){
                 R.id.profile -> startActivity(Intent(this@MenuActivity, ProfileActivity::class.java))
                 R.id.favorites -> startActivity(Intent(this@MenuActivity, FavoritesActivity::class.java))
+                R.id.myads -> startActivity(Intent(this@MenuActivity, NewAdvertiseActivity::class.java))
                 R.id.addnewad -> startActivity(Intent(this@MenuActivity, NewAdvertiseActivity::class.java))
             }
             true
