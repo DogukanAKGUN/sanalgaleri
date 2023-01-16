@@ -68,6 +68,8 @@ class motorcycleBrandActivity : AppCompatActivity() {
                             override fun onItemClick(position: Int) {
 
                                 val intent = Intent(this@motorcycleBrandActivity, VehicleListActivity::class.java)
+                                intent.putExtra("brand",motorcycleBrandListe.get(position).brandName)
+                                intent.putExtra("type",motorcycleBrandListe.get(position).type)
                                 startActivity(intent)
 
 

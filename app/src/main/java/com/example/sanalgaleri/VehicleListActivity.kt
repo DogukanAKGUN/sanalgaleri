@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.AuthFailureError
 import com.android.volley.RequestQueue
 import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.sanalgaleri.Model.VehicleList
@@ -22,13 +23,19 @@ import org.json.JSONObject
 
 class VehicleListActivity : AppCompatActivity() {
     private var layoutManager: RecyclerView.LayoutManager? = null
+    var brand = ""
+    var type = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_vehicle_list)
 
         val VehicleListe = ArrayList<VehicleList>()
 
-
+        val extras = intent.extras
+        if (extras != null) {
+            brand = extras.getString("brand").toString()
+            type = extras.getString("type").toString()
+        }
 
         layoutManager = LinearLayoutManager(this)
         VehicleListRecyclerView.layoutManager = layoutManager
@@ -38,17 +45,20 @@ class VehicleListActivity : AppCompatActivity() {
         val serverAPIURL: String = "http://10.0.2.2:5000/vehiclelist"
         val TAG = "My Api"
 
-        fun VerileriGetir() {
+        fun VerileriGetir(brandName:String,type:String) {
             volleyRequestQueue = Volley.newRequestQueue(this)
             dialog = ProgressDialog.show(this, "", "Lütfen bekleyin...", true);
             val parameters: MutableMap<String, String> = HashMap()
 
-            val strReq: StringRequest = object : StringRequest(
-                Method.GET,serverAPIURL,
+            val json = JSONObject()
+            json.put("brand",brandName)
+            json.put("type",type)
+            val strReq: JsonObjectRequest = object : JsonObjectRequest(
+                Method.POST,serverAPIURL,json,
                 Response.Listener { response ->
                     Log.e(TAG, "response: " + response)
                     try {
-                        val responseObj = JSONObject(response)
+                        val responseObj = response
                         val gson = Gson()
 
                         val sItems = responseObj.getJSONArray("res")
@@ -69,8 +79,7 @@ class VehicleListActivity : AppCompatActivity() {
                             override fun onItemClick(position: Int) {
 
                                 val intent = Intent(this@VehicleListActivity, CarouselActivity::class.java)
-
-                                //Toast.makeText(this@BrandActivity, "Giriş Yaptı:"+ position, Toast.LENGTH_SHORT).show()
+                                intent.putExtra("ad_id",VehicleListe.get(position).ad_id)
                                 startActivity(intent)
 
                             }
@@ -100,6 +109,6 @@ class VehicleListActivity : AppCompatActivity() {
             // Adding request to request queue
             volleyRequestQueue?.add(strReq)
         }
-        VerileriGetir()
+        VerileriGetir(brand,type)
     }
 }

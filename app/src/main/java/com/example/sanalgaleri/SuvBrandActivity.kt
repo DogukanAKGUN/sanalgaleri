@@ -1,6 +1,7 @@
 package com.example.sanalgaleri
 
 import android.app.ProgressDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -63,10 +64,10 @@ class SuvBrandActivity : AppCompatActivity() {
                             SuvBrandRecyclerAdapter.onItemCLickListener {
                             override fun onItemClick(position: Int) {
 
-                                //val intent = Intent(this@BrandActivity, BrandActivity::class.java)
-
-                                //Toast.makeText(this@BrandActivity, "Giriş Yaptı:"+ position, Toast.LENGTH_SHORT).show()
-                                //startActivity(intent)
+                                val intent = Intent(this@SuvBrandActivity, VehicleListActivity::class.java)
+                                intent.putExtra("brand",suvBrandListe.get(position).brandName)
+                                intent.putExtra("type",suvBrandListe.get(position).type)
+                                startActivity(intent)
 
                             }
 

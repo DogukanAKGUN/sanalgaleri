@@ -28,9 +28,8 @@ class ProfileActivity : AppCompatActivity() {
         setContentView(R.layout.activity_profile)
 
         val logindata = getSharedPreferences("login", Context.MODE_PRIVATE)
-        var user_id = logindata.getInt("_id",0)
+        val user_id = logindata.getInt("_id",0)
 
-        Toast.makeText(this, "USER ID NE :"+ user_id, Toast.LENGTH_SHORT).show()
 
         val user = ArrayList<User>()
 

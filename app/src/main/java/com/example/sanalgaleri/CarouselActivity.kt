@@ -8,16 +8,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.sanalgaleri.Model.CarDetailModel
 import com.example.sanalgaleri.Model.CarDetails
-import com.example.sanalgaleri.Model.otomobilBrandModel
 import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import com.smarteist.autoimageslider.SliderView
 import kotlinx.android.synthetic.main.activity_carousel.*
-import kotlinx.android.synthetic.main.item_carousel.*
 import org.json.JSONObject
 
 
@@ -29,12 +24,19 @@ class CarouselActivity : AppCompatActivity() {
 
     lateinit var sliderAdapter: SliderAdapter
 
+    var ad_id = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_carousel)
 
         sliderView = findViewById(R.id.slider)
 
+        val extras = intent.extras
+        if (extras != null) {
+            ad_id = extras.getInt("ad_id")
+
+        }
 
         val carDetail = ArrayList<CarDetails>()
 
@@ -96,7 +98,7 @@ class CarouselActivity : AppCompatActivity() {
             volleyRequestQueue?.add(JsonApi)
 
         }
-        GetItemById(2)
+        GetItemById(ad_id)
 
     }
 

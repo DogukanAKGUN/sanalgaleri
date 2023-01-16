@@ -1,6 +1,7 @@
 package com.example.sanalgaleri
 
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.AuthFailureError
 import com.android.volley.RequestQueue
 import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.sanalgaleri.Model.VehicleList
@@ -26,26 +28,31 @@ class FavoritesActivity : AppCompatActivity() {
         val VehicleListe = ArrayList<VehicleList>()
 
 
+        val logindata = getSharedPreferences("login", Context.MODE_PRIVATE)
+        val user_id = logindata.getInt("_id",0)
+
 
         layoutManager = LinearLayoutManager(this)
         FavoritesRecyclerView.layoutManager = layoutManager
 
         var volleyRequestQueue: RequestQueue? = null
         var dialog: ProgressDialog? = null
-        val serverAPIURL: String = "http://10.0.2.2:5000/favorites"
+        val serverAPIURL: String = "http://10.0.2.2:5000/favoritesList"
         val TAG = "My Api"
 
-        fun VerileriGetir() {
+        fun VerileriGetir(id: Int) {
             volleyRequestQueue = Volley.newRequestQueue(this)
+            val json = JSONObject()
+            json.put("user_id",id)
             dialog = ProgressDialog.show(this, "", "Lütfen bekleyin...", true);
             val parameters: MutableMap<String, String> = HashMap()
 
-            val strReq: StringRequest = object : StringRequest(
-                Method.GET,serverAPIURL,
+            val jsonApi: JsonObjectRequest = object : JsonObjectRequest(
+                Method.POST,serverAPIURL,json,
                 Response.Listener { response ->
                     Log.e(TAG, "response: " + response)
                     try {
-                        val responseObj = JSONObject(response)
+                        val responseObj = response
                         val gson = Gson()
 
                         val sItems = responseObj.getJSONArray("res")
@@ -66,8 +73,9 @@ class FavoritesActivity : AppCompatActivity() {
                             override fun onItemClick(position: Int) {
 
                                 val intent = Intent(this@FavoritesActivity, CarouselActivity::class.java)
-
+                                intent.putExtra("ad_id",VehicleListe.get(position).ad_id)
                                 startActivity(intent)
+
 
                             }
 
@@ -94,9 +102,9 @@ class FavoritesActivity : AppCompatActivity() {
                 }
             }
             // Adding request to request queue
-            volleyRequestQueue?.add(strReq)
+            volleyRequestQueue?.add(jsonApi)
         }
-        VerileriGetir()
+        VerileriGetir(user_id)
     }
 
 }
