@@ -2,4 +2,5 @@
     <string name="app_name">Sanal Galeri</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="select">Marka Seçiniz</string>
 </resources>

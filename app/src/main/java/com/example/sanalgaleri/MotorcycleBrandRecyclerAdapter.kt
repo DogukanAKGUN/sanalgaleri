@@ -5,7 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.sanalgaleri.Model.motorcycleBrandModel
+import kotlinx.android.synthetic.main.brand_card.view.*
 
 class MotorcycleBrandRecyclerAdapter  (
     private val motorcycleBrandListe: ArrayList<motorcycleBrandModel>
@@ -64,7 +66,9 @@ class MotorcycleBrandRecyclerAdapter  (
         val motorcycleBrandModel = motorcycleBrandListe[position]
         holder.title.text = motorcycleBrandModel.brandName
         //holder.image.setImageResource(otomobilBrandModel.brandImage.toString())
-
+        Glide.with(holder.itemView)
+            .load(motorcycleBrandModel.brandImage)
+            .into(holder.itemView.brand_image)
 
         //val ItemMenuModel = liste[position]
         //holder.image.setImageResource(ItemMenuModel.image)

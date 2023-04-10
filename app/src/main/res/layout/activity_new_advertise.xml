@@ -1,9 +1,206 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".NewAdvertiseActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="İLAN BAŞLIĞI"
+                android:id="@+id/adtitletext"
+                android:layout_marginLeft="20dp"
+                />
+
+            <EditText
+                android:layout_marginTop="10dp"
+                android:id="@+id/adtitle"
+                android:layout_width="300sp"
+                android:layout_marginLeft="50dp"
+                android:layout_height="40sp"
+                android:hint="İlan Başlığı"
+                android:layout_below="@+id/adtitletext"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:text="AÇIKLAMA"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/addescriptiontext"
+                android:layout_below="@+id/adtitle"
+
+                />
+
+            <EditText
+                android:id="@+id/addescription"
+                android:layout_width="300sp"
+                android:layout_height="75sp"
+                android:hint="Açıklama"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10sp"
+                android:layout_below="@+id/addescriptiontext"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:text="MODEL YILI"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/modelyeartext"
+                android:layout_below="@+id/addescription"
+
+                />
+
+            <EditText
+                android:id="@+id/mdlyear"
+                android:layout_width="300sp"
+                android:layout_height="40sp"
+                android:hint="Örnek: 2019"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10sp"
+                android:layout_below="@+id/modelyeartext"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:text="FİYAT"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/pricetext"
+                android:layout_below="@+id/mdlyear"
+
+                />
+
+            <EditText
+                android:id="@+id/vehicleprice"
+                android:layout_width="300sp"
+                android:layout_height="40sp"
+                android:hint="Örken:1250999"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10sp"
+                android:layout_below="@+id/pricetext"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:text="KM"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/kmtext"
+                android:layout_below="@+id/vehicleprice"
+
+                />
+
+            <EditText
+                android:id="@+id/vehiclekm"
+                android:layout_width="300sp"
+                android:layout_height="40sp"
+                android:hint="Örken:124569"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10sp"
+                android:layout_below="@+id/kmtext"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:text="Beygir Gücü"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/hptext"
+                android:layout_below="@+id/vehiclekm"
+
+                />
+
+            <EditText
+                android:id="@+id/vehiclehp"
+                android:layout_width="300sp"
+                android:layout_height="40sp"
+                android:hint="Örken:170"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10sp"
+                android:layout_below="@+id/hptext"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:text="Motor Kapasitesi"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/capacitytext"
+                android:layout_below="@+id/vehiclehp"
+
+                />
+
+            <EditText
+                android:id="@+id/vehiclecapacity"
+                android:layout_width="300sp"
+                android:layout_height="40sp"
+                android:hint="Örken: 2000"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10sp"
+                android:layout_below="@+id/capacitytext"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:text="Renk"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/colortext"
+                android:layout_below="@+id/vehiclecapacity"
+
+                />
+
+            <EditText
+                android:id="@+id/vehiclecolor"
+                android:layout_width="300sp"
+                android:layout_height="40sp"
+                android:hint="Örken:Siyah"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10sp"
+                android:layout_below="@+id/colortext"/>
+
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:id="@+id/spinner2"
+                android:layout_height="wrap_content"
+                android:autofillHints="Marka Seçiniz"
+                android:layout_below="@id/vehiclecolor"
+                />
+            <Spinner
+                android:layout_width="match_parent"
+                android:id="@+id/spinner"
+                android:layout_height="wrap_content"
+                android:autofillHints="Kategori Seçiniz"
+                android:layout_below="@id/spinner2"
+                />
+
+            <Button
+                android:id="@+id/savevehicle"
+
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spinner2"
+                android:layout_marginLeft="150dp"
+                android:layout_marginTop="25dp"
+                android:backgroundTint="@color/white"
+                android:text="Giriş Yap"
+                android:textColor="@color/black" />
+
+        </RelativeLayout>
+
+
+
+</ScrollView>
