@@ -1,7 +1,12 @@
 package com.example.sanalgaleri
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.util.Base64
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -9,18 +14,29 @@ import android.widget.AutoCompleteTextView
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.t2r2.volleyexample.FileDataPart
+import com.t2r2.volleyexample.VolleyFileUploadRequest
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_new_advertise.*
 import kotlinx.android.synthetic.main.vehicle_list_card.*
 import org.json.JSONObject
+import java.io.ByteArrayOutputStream
+import java.io.IOException
 import kotlin.math.log
 
 class NewAdvertiseActivity : AppCompatActivity() {
 
+    private var imageData: ByteArray? = null
 
+
+    companion object {
+        private const val IMAGE_PICK_CODE = 999
+    }
 
     var item = arrayOf<String>("BMW","Mercedes-Benz","Voklswagen","Audi")
 
@@ -106,6 +122,54 @@ class NewAdvertiseActivity : AppCompatActivity() {
 
         }
 
+        fun launchGallery() {
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.type = "image/*"
+            startActivityForResult(intent, IMAGE_PICK_CODE)
+        }
+
+
+        fun uploadImage() {
+            val postURL: String = "http://10.0.2.2:5000/file"
+
+            val request = object : VolleyFileUploadRequest(
+                Method.POST,
+                postURL,
+                Response.Listener {
+                    println("response is: $it")
+                },
+                Response.ErrorListener {
+                    println("error is: $it")
+                }
+            ) {
+                override fun getByteData(): MutableMap<String, FileDataPart> {
+                    val params = HashMap<String, FileDataPart>()
+                    params["imageFile"] = FileDataPart("image", imageData!!, "*")
+                    return params
+                }
+            }
+            Volley.newRequestQueue(this).add(request)
+        }
+
+        @Throws(IOException::class)
+        fun createImageData(uri: Uri) {
+            val inputStream = contentResolver.openInputStream(uri)
+            inputStream?.buffered()?.use {
+                imageData = it.readBytes()
+            }
+        }
+
+        fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+            if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE) {
+                val uri = data?.data
+                if (uri != null) {
+                    imageView.setImageURI(uri)
+                    createImageData(uri)
+                }
+            }
+            super.onActivityResult(requestCode, resultCode, data)
+        }
+
         fun addVehicle(){
             val url = "http://10.0.2.2:5000/vehicleadd"
 
@@ -140,6 +204,13 @@ class NewAdvertiseActivity : AppCompatActivity() {
             addVehicle()
         }
 
+        imageButton.setOnClickListener {
+            launchGallery()
+        }
+
+        sendButton.setOnClickListener {
+            uploadImage()
+        }
 
     }
 }

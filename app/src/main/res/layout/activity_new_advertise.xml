@@ -192,13 +192,50 @@
                 android:layout_width="wrap_content"
 
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/spinner2"
+                android:layout_below="@+id/imageupload"
                 android:layout_marginLeft="150dp"
                 android:layout_marginTop="25dp"
                 android:backgroundTint="@color/white"
-                android:text="Giriş Yap"
+                android:text="Kayıt"
                 android:textColor="@color/black" />
 
+            <Button
+                android:id="@+id/imageupload"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spinner"
+                android:layout_marginLeft="110dp"
+                android:layout_marginTop="25dp"
+                android:backgroundTint="@color/white"
+                android:text="Fotoğraf Yükle"
+                android:textColor="@color/black"
+                />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="10dp"
+                android:layout_below="@+id/savevehicle"
+                />
+
+            <Button
+                android:id="@+id/imageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Choose Image"
+                android:layout_below="@+id/imageView"
+                />
+
+            <Button
+                android:id="@+id/sendButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_below="@+id/imageButton"
+                android:text="Upload Image"
+                />
         </RelativeLayout>
 
 
