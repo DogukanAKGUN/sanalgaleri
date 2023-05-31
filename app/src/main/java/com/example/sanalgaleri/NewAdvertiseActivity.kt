@@ -7,12 +7,14 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.util.Base64
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
 import com.android.volley.Response
@@ -122,35 +124,6 @@ class NewAdvertiseActivity : AppCompatActivity() {
 
         }
 
-        fun launchGallery() {
-            val intent = Intent(Intent.ACTION_PICK)
-            intent.type = "image/*"
-            startActivityForResult(intent, IMAGE_PICK_CODE)
-        }
-
-
-        fun uploadImage() {
-            val postURL: String = "http://10.0.2.2:5000/file"
-
-            val request = object : VolleyFileUploadRequest(
-                Method.POST,
-                postURL,
-                Response.Listener {
-                    println("response is: $it")
-                },
-                Response.ErrorListener {
-                    println("error is: $it")
-                }
-            ) {
-                override fun getByteData(): MutableMap<String, FileDataPart> {
-                    val params = HashMap<String, FileDataPart>()
-                    params["imageFile"] = FileDataPart("image", imageData!!, "*")
-                    return params
-                }
-            }
-            Volley.newRequestQueue(this).add(request)
-        }
-
         @Throws(IOException::class)
         fun createImageData(uri: Uri) {
             val inputStream = contentResolver.openInputStream(uri)
@@ -158,6 +131,59 @@ class NewAdvertiseActivity : AppCompatActivity() {
                 imageData = it.readBytes()
             }
         }
+
+         val getResult =
+            registerForActivityResult(
+                ActivityResultContracts.StartActivityForResult()) {
+
+                    if (it.resultCode == Activity.RESULT_OK) {
+                        val uri = it.data?.data
+
+                        if (uri != null) {
+                            imageView.setImageURI(uri)
+                            createImageData(uri)
+                        }
+                    }
+
+            }
+
+        fun launchGallery() {
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.type = "image/*"
+            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+            // Caller
+            getResult.launch(intent)
+            // Receiver
+
+        }
+
+        
+
+
+
+        fun uploadImage() {
+            val postURL: String = "http://10.0.2.2:5000/file-upload"
+
+            val request = object : VolleyFileUploadRequest(
+                Method.POST,
+                postURL,
+                Response.Listener {
+                    Log.d("dodo","response is: $it")
+                },
+                Response.ErrorListener {
+                    println("error is: $it")
+                }
+            ) {
+                override fun getByteData(): MutableMap<String, FileDataPart> {
+                    val params = HashMap<String, FileDataPart>()
+                    params["file"] = FileDataPart("image.png", imageData!!, "*")
+                    return params
+                }
+            }
+            Volley.newRequestQueue(this).add(request)
+        }
+
+
 
         fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
             if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE) {

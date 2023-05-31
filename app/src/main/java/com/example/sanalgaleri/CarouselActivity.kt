@@ -1,6 +1,7 @@
 package com.example.sanalgaleri
 
 import android.app.ProgressDialog
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -29,6 +30,9 @@ class CarouselActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_carousel)
+
+        val logindata = getSharedPreferences("login", Context.MODE_PRIVATE)
+        val user_id = logindata.getInt("_id",0)
 
         sliderView = findViewById(R.id.slider)
 
@@ -99,6 +103,48 @@ class CarouselActivity : AppCompatActivity() {
 
         }
         GetItemById(ad_id)
+
+
+        val favurl = "http://10.0.2.2:5000/addtofavorites"
+        val FavTAG = "My Api"
+
+        fun AddToFav(id: Int){
+            val send = JSONObject()
+            send.put("ad_id", id)
+            send.put("user_id",user_id)
+            volleyRequestQueue = Volley.newRequestQueue(this)
+            val FavJsonApi: JsonObjectRequest = object : JsonObjectRequest(
+                Method.POST,favurl,send,
+                Response.Listener { response ->
+
+                    Log.e(FavTAG, "response: " + response)
+                    try {
+                        val responseObj = response
+                        val gson = Gson()
+                        val sItems = responseObj.getJSONArray("res")
+                        //val sItem = gson.fromJson(sItems.toString(), CarDetails::class.java)
+                        Toast.makeText(this, "Sonuç:"+response, Toast.LENGTH_SHORT).show()
+
+
+
+                        dialog?.dismiss()
+                    } catch (e: Exception) { // caught while parsing the response
+                        Log.e(FavTAG, "problem occurred"+ e )
+                        e.printStackTrace()
+                    }
+                },
+                Response.ErrorListener{
+
+                }) {}
+            volleyRequestQueue?.add(FavJsonApi)
+
+        }
+
+        addtofav.setOnClickListener{
+            AddToFav(ad_id)
+        }
+
+
 
     }
 
