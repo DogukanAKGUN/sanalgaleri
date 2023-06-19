@@ -53,6 +53,7 @@ class CarouselActivity : AppCompatActivity() {
         fun GetItemById(id: Int){
             val send = JSONObject()
             send.put("_id", id)
+            send.put("user_id",user_id)
 
             volleyRequestQueue = Volley.newRequestQueue(this)
             val JsonApi: JsonObjectRequest = object : JsonObjectRequest(

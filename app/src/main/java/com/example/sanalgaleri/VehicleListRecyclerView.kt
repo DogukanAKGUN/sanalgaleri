@@ -27,9 +27,6 @@ class VehicleListRecyclerAdapter (
     }
     inner class ViewHolder(itemView: View, listener: onItemCLickListener): RecyclerView.ViewHolder(itemView){
 
-        /*val image: ImageView = itemView.findViewById(R.id.)
-        val title: TextView = itemView.findViewById(R.id.)
-        val price: TextView = itemView.findViewById(R.id.)*/
 
         init{
             itemView.setOnClickListener {
